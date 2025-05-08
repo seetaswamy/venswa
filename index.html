@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Venswa | Welcome</title>
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: white;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      animation: fadeIn 2s ease-in-out;
+    }
+    button {
+      background: white;
+      color: #2575fc;
+      border: none;
+      padding: 12px 25px;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #f0f0f0;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to Venswa</h1>
+  <p>Your digital presence begins here.</p>
+  <button onclick="showMessage()">Discover More</button>
+
+  <script>
+    function showMessage() {
+      alert("Thanks for visiting Venswa! Stay tuned for exciting content.");
+    }
+  </script>
+</body>
+</html>
