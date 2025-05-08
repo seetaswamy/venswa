@@ -4,33 +4,85 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Venswa | Welcome</title>
+  
+  <!-- Favicon: Letter "V" -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>V</text></svg>">
+
   <style>
     * {
-      margin: 0; padding: 0; box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
     }
+
     body {
       font-family: 'Segoe UI', sans-serif;
       background: linear-gradient(to right, #6a11cb, #2575fc);
       color: white;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 15px 30px;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    header h2 {
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #00ffff;
+    }
+
+    .hero {
       height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
       text-align: center;
-      padding: 20px;
+      padding: 0 20px;
     }
-    h1 {
+
+    .hero h1 {
       font-size: 3rem;
-      margin-bottom: 10px;
       animation: fadeIn 1.5s ease-in-out;
     }
-    p {
+
+    .hero p {
       font-size: 1.2rem;
-      margin-bottom: 30px;
+      margin: 20px 0;
       animation: fadeIn 2s ease-in-out;
     }
-    button {
+
+    .hero button {
       background: white;
       color: #2575fc;
       border: none;
@@ -40,24 +92,227 @@
       cursor: pointer;
       transition: 0.3s;
     }
-    button:hover {
+
+    .hero button:hover {
       background: #f0f0f0;
     }
+
+    section {
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    section p {
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    input[type="submit"] {
+      background: #00ffff;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    input[type="submit"]:hover {
+      background: #00cccc;
+    }
+
+    footer {
+      background: rgba(0, 0, 0, 0.3);
+      text-align: center;
+      padding: 30px 10px 10px;
+      font-size: 0.9rem;
+      color: #ddd;
+      margin-top: 40px;
+    }
+
+    .socials {
+      margin: 20px 0;
+    }
+
+    .socials a {
+      color: white;
+      margin: 0 10px;
+      font-size: 1.5rem;
+      transition: color 0.3s;
+      text-decoration: none;
+    }
+
+    .socials a:hover {
+      color: #00ffff;
+    }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(-10px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      nav a {
+        margin: 0 8px;
+      }
+    }
   </style>
 </head>
 <body>
-  <h1>Welcome to Venswa</h1>
-  <p>Your digital presence begins here.</p>
-  <button onclick="showMessage()">Discover More</button>
+
+  <canvas id="bg"></canvas>
+
+  <header>
+    <h2>Venswa</h2>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <h1>Welcome to Venswa</h1>
+    <p>Your digital presence begins here.</p>
+    <button onclick="document.getElementById('about').scrollIntoView({ behavior: 'smooth' })">
+      Discover More
+    </button>
+  </div>
+
+  <section id="about" class="reveal">
+    <h2>About Us</h2>
+    <p>
+      Venswa crafts immersive, futuristic art experiences that push boundaries.
+    </p>
+  </section>
+
+  <section id="services" class="reveal">
+    <h2>What We Do</h2>
+    <p>
+     Arts and crafts.
+    </p>
+  </section>
+
+  <section id="contact" class="reveal">
+    <h2>Contact Us</h2>
+    <p>Drop us a line — let's shape the future together.</p>
+    <form onsubmit="submitForm(event)">
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <textarea rows="4" placeholder="Your Message" required></textarea>
+      <input type="submit" value="Send Message" />
+    </form>
+  </section>
+
+  <footer>
+    <div class="socials">
+      <a href="#" title="Twitter">🐦</a>
+      <a href="#" title="LinkedIn">💼</a>
+      <a href="#" title="GitHub">💻</a>
+    </div>
+    Designed by Swamy
+  </footer>
 
   <script>
-    function showMessage() {
-      alert("Thanks for visiting Venswa! Stay tuned for exciting content.");
+    // Scroll Reveal Logic
+    const reveals = document.querySelectorAll('.reveal');
+    function revealOnScroll() {
+      const windowHeight = window.innerHeight;
+      reveals.forEach(el => {
+        const elementTop = el.getBoundingClientRect().top;
+        if (elementTop < windowHeight - 100) el.classList.add('active');
+      });
     }
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
+
+    // Dummy form submission
+    function submitForm(event) {
+      event.preventDefault();
+      alert('Thank you for your message!');
+    }
+
+    // Background Animation
+    const canvas = document.getElementById('bg');
+    const ctx = canvas.getContext('2d');
+    let width, height, particles;
+
+    function resize() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+      createParticles();
+    }
+
+    function createParticles() {
+      particles = [];
+      for (let i = 0; i < 60; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          radius: Math.random() * 2 + 1,
+          dx: (Math.random() - 0.5) * 0.5,
+          dy: (Math.random() - 0.5) * 0.5
+        });
+      }
+    }
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+      particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fill();
+        p.x += p.dx;
+        p.y += p.dy;
+
+        // Bounce off edges
+        if (p.x < 0 || p.x > width) p.dx *= -1;
+        if (p.y < 0 || p.y > height) p.dy *= -1;
+      });
+      requestAnimationFrame(drawParticles);
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+    drawParticles();
   </script>
 </body>
 </html>
