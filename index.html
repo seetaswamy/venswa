@@ -199,74 +199,27 @@
 
   <header>
     <h2>Venswa</h2>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#services">Services</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    
   </header>
 
   <div class="hero">
     <h1>Welcome to Venswa</h1>
     <p>Your digital presence begins here.</p>
-    <button onclick="document.getElementById('about').scrollIntoView({ behavior: 'smooth' })">
+    <button >
       Discover More
     </button>
   </div>
 
-  <section id="about" class="reveal">
-    <h2>About Us</h2>
-    <p>
-      Venswa crafts immersive, futuristic art experiences that push boundaries.
-    </p>
-  </section>
+  
 
-  <section id="services" class="reveal">
-    <h2>What We Do</h2>
-    <p>
-     Arts and crafts.
-    </p>
-  </section>
-
-  <section id="contact" class="reveal">
-    <h2>Contact Us</h2>
-    <p>Drop us a line — let's shape the future together.</p>
-    <form onsubmit="submitForm(event)">
-      <input type="text" placeholder="Your Name" required />
-      <input type="email" placeholder="Your Email" required />
-      <textarea rows="4" placeholder="Your Message" required></textarea>
-      <input type="submit" value="Send Message" />
-    </form>
-  </section>
-
-  <footer>
-    <div class="socials">
-      <a href="#" title="Twitter">🐦</a>
-      <a href="#" title="LinkedIn">💼</a>
-      <a href="#" title="GitHub">💻</a>
-    </div>
-    Designed by Swamy
-  </footer>
+  
+  
 
   <script>
     // Scroll Reveal Logic
-    const reveals = document.querySelectorAll('.reveal');
-    function revealOnScroll() {
-      const windowHeight = window.innerHeight;
-      reveals.forEach(el => {
-        const elementTop = el.getBoundingClientRect().top;
-        if (elementTop < windowHeight - 100) el.classList.add('active');
-      });
-    }
-    window.addEventListener('scroll', revealOnScroll);
-    window.addEventListener('load', revealOnScroll);
+    
 
-    // Dummy form submission
-    function submitForm(event) {
-      event.preventDefault();
-      alert('Thank you for your message!');
-    }
-
+   
     // Background Animation
     const canvas = document.getElementById('bg');
     const ctx = canvas.getContext('2d');
